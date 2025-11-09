@@ -1,5 +1,5 @@
 // firestore.js
-import { getFirestore, collection, doc, addDoc, getDocs, setDoc, getDoc, query, where, Timestamp, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, doc, addDoc, getDocs, setDoc, getDoc, query, where, Timestamp, updateDoc, deleteDoc, connectFirestoreEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 // Permit mutable exported bindings (we intentionally reassign these in initializeDatabase)
@@ -11,6 +11,16 @@ export let storage;
 export const initializeDatabase = (app) => {
     db = getFirestore(app);
     storage = getStorage(app);
+    // If running on localhost, connect Firestore to the emulator (note: port configured in firebase.json)
+    try {
+        if (location && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+            // Port 8082 configured in firebase.json
+            connectFirestoreEmulator(db, '127.0.0.1', 8082);
+            console.info('Firestore emulator connected: 127.0.0.1:8082');
+        }
+    } catch (e) {
+        console.warn('Could not connect to Firestore emulator:', e);
+    }
 };
 
 // ----------------------------

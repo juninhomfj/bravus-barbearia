@@ -1,11 +1,20 @@
 // auth.js
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, connectAuthEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { setBarbeiro, createNewBarberProfile } from './firestore.js'; // Importa a função do Firestore
 
 let auth;
 
 export const initializeAuth = (app) => {
     auth = getAuth(app);
+    // If running on localhost, connect to the Auth emulator
+    try {
+        if (location && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+            connectAuthEmulator(auth, "http://127.0.0.1:9099");
+            console.info('Auth emulator connected: http://127.0.0.1:9099');
+        }
+    } catch (e) {
+        console.warn('Could not connect to Auth emulator:', e);
+    }
 };
 
 const ensureAuth = () => {

@@ -72,31 +72,38 @@
     </footer>
 
     <script type="module">
-        // 1. Configuração do Firebase
-        // IMPORTANTE: Instalar o SDK do Firebase via npm é a abordagem moderna e recomendada.
-        // Como o projeto está apenas com HTML/JS puro, usaremos a abordagem de módulos ES6
-        // após a configuração via npm ou seguindo a estrutura modular para o navegador.
-        
-        // Exemplo da Configuração:
-        const firebaseConfig = {
-            apiKey: "// TODO: inserir config Firebase - apiKey",
-            authDomain: "// TODO: inserir config Firebase - authDomain",
-            projectId: "// TODO: inserir config Firebase - projectId",
-            storageBucket: "// TODO: inserir config Firebase - storageBucket",
-            messagingSenderId: "// TODO: inserir config Firebase - messagingSenderId",
-            appId: "// TODO: inserir config Firebase - appId"
-        };
-        
-        // 2. Importação do módulo principal
+        // Inicialização segura do Firebase — modo seguro para desenvolvimento local (emuladores)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        
-        // 3. Inicializa o Firebase
-        const app = initializeApp(firebaseConfig);
-        
-        // 4. Importa e executa o main.js
-        import * as main from './js/main.js';
-        main.startApp(app);
 
+        // Se estiver em localhost, inicializamos com uma configuração mínima e confiamos nos emuladores
+        const isLocal = location && (location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+
+        // Objeto de configuração padrão (substitua em produção). Para desenvolvimento local, estes valores não expõem segredos.
+        const firebaseConfigFallback = {
+            apiKey: isLocal ? 'local-testing-api-key' : '// TODO: inserir apiKey',
+            authDomain: isLocal ? 'localhost' : '// TODO: inserir authDomain',
+            projectId: 'bravus-barbearia', // use seu projectId ou o valor do emulador
+            storageBucket: isLocal ? 'bravus-barbearia.appspot.com' : '// TODO: inserir storageBucket',
+            messagingSenderId: isLocal ? '0' : '// TODO: inserir messagingSenderId',
+            appId: isLocal ? '1:local:web:local' : '// TODO: inserir appId'
+        };
+
+        // Em ambiente não-local, exigimos que o desenvolvedor substitua as chaves TODO para evitar chamadas acidentais na nuvem.
+        const requiresManualConfig = !isLocal && (firebaseConfigFallback.apiKey || '').includes('// TODO');
+        if (requiresManualConfig) {
+            document.getElementById('app-container').innerHTML = `
+                <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-2 text-red-600">Configuração Firebase ausente</h2>
+                    <p class="text-sm text-gray-700">Você precisa colar as credenciais do Firebase (firebaseConfig) no arquivo <code>index.html</code> antes de iniciar em produção.</p>
+                    <p class="text-sm text-gray-600 mt-3">Para desenvolvimento local, abra este site via <strong>localhost</strong> e o modo emulador será usado automaticamente.</p>
+                </div>`;
+            throw new Error('firebaseConfig não definido para ambiente não-local. Preencha as chaves antes de prosseguir.');
+        }
+
+        const app = initializeApp(firebaseConfigFallback);
+
+        // Importa e inicia o app principal
+        import('./js/main.js').then(({ startApp }) => startApp(app)).catch(err => console.error('Erro ao iniciar app:', err));
     </script>
 </body>
 </html>
