@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento | Barbearia Bravus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center p-4">
+    <div id="public-scheduler-container" class="w-full max-w-5xl bg-gray-50 p-8 rounded-xl shadow-2xl">
+        <!-- O conteúdo será injetado pelo loadPublicScheduler de agenda.js -->
+        <div class="text-center py-20">
+            <svg class="animate-spin h-8 w-8 text-yellow-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-4 text-gray-600">Carregando agenda...</p>
+        </div>
+    </div>
+    
+    <script type="module">
+        // Variáveis globais obrigatórias do Canvas
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+        // 1. Imports do Firebase e Módulos
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+        // CORREÇÃO: Alterado o caminho de './js/...' para '/js/...' para garantir a resolução do módulo
+    import * as firestore from '/js/firestore.js';
+    import * as auth from '/js/auth.js';
+    import * as agendamento from '/js/agendamento.js';
+
+        // 2. Inicialização do Firebase (APENAS INSTÂNCIAS DE SERVIÇO)
+        const app = initializeApp(firebaseConfig);
+    firestore.initializeDatabase(app);
+    auth.initializeAuth(app);
+
+    // 3. Inicialização da Página Pública
+    agendamento.initializeClientBookingPage();
+
+        // Nota: Não precisamos de autenticação para o cliente nesta página,
+        // mas as instâncias do Firebase precisam estar carregadas.
+    </script>
+</body>
+</html>
