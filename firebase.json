@@ -26,7 +26,7 @@
     },
     "apphosting": {
       "port": 4000,
-      "rootDirectory": "./"
+      "rootDirectory": "C:\\Users\\DELL\\Desktop\\bravus-barbearia"
     },
     "database": {
       "port": 9000

@@ -17,7 +17,8 @@
             <h3 class="font-semibold">Link de Agendamento Público</h3>
             <p class="text-sm text-gray-600">Compartilhe este link com seus clientes para que possam agendar online.</p>
             <div class="mt-2 flex items-center gap-3">
-                <input id="public-link-input" class="flex-1 border p-2 rounded" readonly />
+                <label for="public-link-input" class="sr-only">Link de Agendamento Público</label>
+                <input id="public-link-input" class="flex-1 border p-2 rounded" title="Link de Agendamento Público" placeholder="Cole o link público aqui" aria-label="Link de Agendamento Público" readonly />
                 <button id="copy-public-link" class="bg-yellow-500 text-gray-900 px-3 py-1 rounded">Copiar</button>
             </div>
         </div>
