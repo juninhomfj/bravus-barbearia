@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "bravus-barbearia"
-  }
+    "default": "bravus-barbearia",
+    "bravus": "bravus-barbearia"
+  },
+  "targets": {},
+  "etags": {}
 }
