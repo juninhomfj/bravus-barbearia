@@ -1,4 +1,4 @@
-import { db } from './firestore.js';
+import { db, promoteToPremium } from './firestore.js';
 import { getCurrentUser } from './auth.js';
 
 import { 
@@ -102,12 +102,35 @@ export const loadEstoqueManager = async (container = null, isPremium = true) => 
                 <h3 class="text-3xl font-extrabold text-center mb-2">🔒 Módulo Premium Exclusivo</h3>
                 <p class="text-center text-gray-400">O controle avançado de Estoque e Insumos é um recurso vital para a gestão, disponível apenas no Plano Premium.</p>
                 <div class="text-center mt-6">
-                    <button class="bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
+                    <button id="upgrade-premium-btn" class="bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
                         Atualizar para Premium
                     </button>
                 </div>
             </div>
         `;
+
+        // Handler para o botão de upgrade (mock direto no cliente)
+        const upgradeBtn = appContainer.querySelector('#upgrade-premium-btn');
+        if (upgradeBtn) {
+            upgradeBtn.addEventListener('click', async () => {
+                upgradeBtn.textContent = 'Processando...';
+                upgradeBtn.disabled = true;
+                try {
+                    const user = getCurrentUser();
+                    if (!user) throw new Error('Você precisa estar autenticado para atualizar o plano.');
+                    await promoteToPremium(user.uid);
+                    // Recarrega o manager como Premium
+                    await loadEstoqueManager(appContainer, true);
+                } catch (err) {
+                    console.error('Falha ao promover para Premium:', err);
+                    alert('Não foi possível promover sua conta: ' + err.message);
+                } finally {
+                    upgradeBtn.textContent = 'Atualizar para Premium';
+                    upgradeBtn.disabled = false;
+                }
+            });
+        }
+
         return;
     }
 
