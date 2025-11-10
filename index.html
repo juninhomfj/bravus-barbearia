@@ -9,6 +9,7 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
+    <!-- Cabeçalho -->
     <header class="bg-gray-800 text-white shadow-md">
         <nav class="container mx-auto p-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-yellow-500">Bravus Barbearia</h1>
@@ -20,90 +21,101 @@
         </nav>
     </header>
 
+    <!-- Corpo -->
     <main id="app-container" class="container mx-auto p-6 flex-grow flex items-center justify-center">
-    <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-2xl">
-        <h2 id="auth-title" class="text-3xl font-bold text-gray-800 mb-6 text-center">Acessar Conta</h2>
-        
-        <form id="login-form" class="space-y-4">
-            <div>
-                <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="login-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-yellow-500 focus:border-yellow-500">
-            </div>
-            <div>
-                <label for="login-password" class="block text-sm font-medium text-gray-700">Senha</label>
-                <input type="password" id="login-password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-yellow-500 focus:border-yellow-500">
-            </div>
-            <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-bold py-2 px-4 rounded-md transition duration-300">Entrar</button>
-        </form>
+        <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-2xl">
+            <h2 id="auth-title" class="text-3xl font-bold text-gray-800 mb-6 text-center">Acessar Conta</h2>
 
-        <form id="signup-form" class="space-y-4 hidden mt-6">
-            <div>
-                <label for="signup-name" class="block text-sm font-medium text-gray-700">Nome (Barbeiro/Barbearia)</label>
-                <input type="text" id="signup-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
-            </div>
-            <div>
-                <label for="signup-type" class="block text-sm font-medium text-gray-700">Tipo de Conta</label>
-                <select id="signup-type" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
-                    <option value="Barbeiro">Barbeiro</option>
-                    <option value="Barbearia">Barbearia</option>
-                    <option value="Cliente">Cliente (Opcional)</option>
-                </select>
-            </div>
-            <div><label for="signup-email">Email</label><input type="email" id="signup-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
-            <div><label for="signup-password">Senha</label><input type="password" id="signup-password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
-            <div><label for="signup-phone">Telefone</label><input type="tel" id="signup-phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
-            <div><label for="signup-city">Cidade</label><input type="text" id="signup-city" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"></div>
+            <!-- Formulário de Login -->
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="login-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-yellow-500 focus:border-yellow-500">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="login-password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-yellow-500 focus:border-yellow-500">
+                </div>
+                <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-bold py-2 px-4 rounded-md transition duration-300">Entrar</button>
+            </form>
 
-            <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Cadastrar</button>
-        </form>
+            <!-- Formulário de Cadastro -->
+            <form id="signup-form" class="space-y-4 hidden mt-6">
+                <div>
+                    <label for="signup-name" class="block text-sm font-medium text-gray-700">Nome (Barbeiro/Barbearia)</label>
+                    <input type="text" id="signup-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
+                <div>
+                    <label for="signup-type" class="block text-sm font-medium text-gray-700">Tipo de Conta</label>
+                    <select id="signup-type" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <option value="Barbeiro">Barbeiro</option>
+                        <option value="Barbearia">Barbearia</option>
+                        <option value="Cliente">Cliente (Opcional)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signup-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="signup-password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
+                <div>
+                    <label for="signup-phone" class="block text-sm font-medium text-gray-700">Telefone</label>
+                    <input type="tel" id="signup-phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
+                <div>
+                    <label for="signup-city" class="block text-sm font-medium text-gray-700">Cidade</label>
+                    <input type="text" id="signup-city" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
 
-        <p class="mt-6 text-center text-sm">
-            <button id="toggle-auth" class="text-yellow-600 hover:text-yellow-800 font-semibold transition duration-300">
-                Não tem conta? Cadastre-se
-            </button>
-        </p>
+                <!-- Chave PIX opcional -->
+                <div>
+                    <label for="signup-pix" class="block text-sm font-medium text-gray-700">Chave PIX (opcional)</label>
+                    <input type="text" id="signup-pix" placeholder="Ex: email@exemplo.com" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                </div>
 
-        <p id="auth-message" class="mt-4 text-center text-sm text-red-500"></p>
-    </div>
+                <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Cadastrar</button>
+            </form>
+
+            <p class="mt-6 text-center text-sm">
+                <button id="toggle-auth" class="text-yellow-600 hover:text-yellow-800 font-semibold transition duration-300">
+                    Não tem conta? Cadastre-se
+                </button>
+            </p>
+
+            <p id="auth-message" class="mt-4 text-center text-sm text-red-500"></p>
+        </div>
     </main>
 
+    <!-- Rodapé -->
     <footer class="bg-gray-800 text-white text-center p-4 mt-8">
         <p>&copy; 2025 Bravus Barbearia. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Firebase + App -->
     <script type="module">
-        // Inicialização segura do Firebase — modo seguro para desenvolvimento local (emuladores)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-        // Se estiver em localhost, inicializamos com uma configuração mínima e confiamos nos emuladores
-        const isLocal = location && (location.hostname === 'localhost' || location.hostname === '127.0.0.1');
-
-        // Objeto de configuração padrão (substitua em produção). Para desenvolvimento local, estes valores não expõem segredos.
-        const firebaseConfigFallback = {
-            apiKey: isLocal ? 'local-testing-api-key' : '// TODO: inserir apiKey',
-            authDomain: isLocal ? 'localhost' : '// TODO: inserir authDomain',
-            projectId: 'bravus-barbearia', // use seu projectId ou o valor do emulador
-            storageBucket: isLocal ? 'bravus-barbearia.appspot.com' : '// TODO: inserir storageBucket',
-            messagingSenderId: isLocal ? '0' : '// TODO: inserir messagingSenderId',
-            appId: isLocal ? '1:local:web:local' : '// TODO: inserir appId'
+        // 🔧 Configuração de produção (preencha com suas credenciais reais do Firebase)
+        const firebaseConfig = {
+            apiKey: "SUA_API_KEY_AQUI",
+            authDomain: "bravus-barbearia.firebaseapp.com",
+            projectId: "bravus-barbearia",
+            storageBucket: "bravus-barbearia.appspot.com",
+            messagingSenderId: "SENDER_ID_AQUI",
+            appId: "APP_ID_AQUI"
         };
 
-        // Em ambiente não-local, exigimos que o desenvolvedor substitua as chaves TODO para evitar chamadas acidentais na nuvem.
-        const requiresManualConfig = !isLocal && (firebaseConfigFallback.apiKey || '').includes('// TODO');
-        if (requiresManualConfig) {
-            document.getElementById('app-container').innerHTML = `
-                <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-xl font-bold mb-2 text-red-600">Configuração Firebase ausente</h2>
-                    <p class="text-sm text-gray-700">Você precisa colar as credenciais do Firebase (firebaseConfig) no arquivo <code>index.html</code> antes de iniciar em produção.</p>
-                    <p class="text-sm text-gray-600 mt-3">Para desenvolvimento local, abra este site via <strong>localhost</strong> e o modo emulador será usado automaticamente.</p>
-                </div>`;
-            throw new Error('firebaseConfig não definido para ambiente não-local. Preencha as chaves antes de prosseguir.');
-        }
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
 
-        const app = initializeApp(firebaseConfigFallback);
-
-        // Importa e inicia o app principal
-        import('./js/main.js').then(({ startApp }) => startApp(app)).catch(err => console.error('Erro ao iniciar app:', err));
+        // Carrega a lógica principal
+        import('./js/main.js').then(({ startApp }) => startApp(app)).catch(err => {
+            console.error('Erro ao iniciar o app:', err);
+            document.getElementById('auth-message').textContent = 'Erro ao carregar o aplicativo.';
+        });
     </script>
 </body>
 </html>
