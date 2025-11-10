@@ -7,6 +7,9 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+# Protege o arquivo com a API key
+/js/firebaseKey.js
+
 # Firebase cache
 .firebase/
 
